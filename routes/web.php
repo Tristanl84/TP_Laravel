@@ -26,7 +26,7 @@ Route::get('/users', 'UsersController@afficher')-> name('current_user');
 Route::get('/skill_user', 'UsersController@btn_skill')->name('skill_user');
 Route::get('/skill_user/{id}', function ($id) {
 
-    $id = DB::table('skill_user')->updateorinsert(['skill_id' => $id, 'user_id' => Auth::user()->id, 'level' => 1]);
+    $id = DB::table('skill_user')->insert(['skill_id' => $id, 'user_id' => Auth::user()->id, 'level' => 1]);
     return redirect()->route('current_user');
 });
 /*Route::get('/skill_user_delete/{id_supp}', function ($id_supp) {

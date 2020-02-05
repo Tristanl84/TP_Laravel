@@ -36,3 +36,11 @@ Route::get('/skill_user/{id}', function ($id) {
 });*/
 Route::post('update', 'UsersController@update');
 Route::post('delete', 'UsersController@delete');
+Route::group(['middleware' => 'App\Http\Middleware\AdminMiddleware'], function()
+{
+Route::match(['get', 'post'], '/adminOnlyPage/', 'HomeController@admin');
+});
+Route::group(['middleware' => 'App\Http\Middleware\SuperAdminMiddleware'], function()
+{
+Route::match(['get', 'post'], '/superAdminOnlyPage/', 'HomeController@super_admin');
+});
